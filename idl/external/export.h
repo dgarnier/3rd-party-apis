@@ -2040,6 +2040,9 @@ typedef struct {
  */
 typedef struct {
 #ifdef linux
+#ifndef _SIGSET_NWORDS
+#define _SIGSET_NWORDS (1024 / (8 * sizeof (unsigned long int)))
+#endif
   unsigned long set[_SIGSET_NWORDS];
 #else
   double set[4];
