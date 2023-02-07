@@ -42,8 +42,9 @@
 	/* Use natural alignment on the Mac. */
 	#if (Compiler == kGCC) || (Compiler == kMetroWerks)
 		#pragma options align=natural
+		#pragma GCC diagnostic ignored "-Wpragma-pack" /* disable warning: alignment changed after including header */
 	#else
-		#error "Unsupported compiler. Figure out how to set alignment to native/natural"
+	#error "Unsupported compiler. Figure out how to set alignment to native/natural"
 	#endif
 #else
 	/* Use default (or build's) alignment */

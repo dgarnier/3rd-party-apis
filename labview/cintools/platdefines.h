@@ -360,8 +360,11 @@ LabVIEW system options: don't uncomment, the compiler defines these automaticall
 	where we cannot include Carbon.h, assembly files and nidl files. In those
 	cases, #define _Cannot_Include_Carbon_ 1 before including platdefines.h.
 */
-#if __APPLE__ && !(_Cannot_Include_Carbon_) && !(TARGET_OS_IPHONE)/* && !defined(__x86_64__) && !defined(__x86_64) */
-	#include <Carbon/Carbon.h>
+#if __APPLE__
+	#include <TargetConditionals.h>
+	#if TARGET_OS_OSX && !(_Cannot_Include_Carbon_)  /* auto disable for all IOS like devices */
+		#include <Carbon/Carbon.h>
+	#endif
 #endif
 /* Other defines for convenience. */
 
